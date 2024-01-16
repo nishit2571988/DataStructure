@@ -1,0 +1,143 @@
+using System;
+					
+public class Program
+{
+	public class Node 
+	{
+    	public int data;
+    	public Node next;
+	}
+	public class LinkList()
+	{
+		public Node head;
+		
+		public void InsertAtLast(int val)
+		{
+			Node newNode =new Node();
+			newNode.data = val;
+				
+			if(head == null)
+			{
+				head = newNode;
+				return;
+			}
+			else
+			{
+				Node temp = head;
+				
+				while(temp.next != null)
+				{
+					temp = temp.next;
+				}
+				
+				temp.next = newNode;
+				
+			}
+			
+			 
+		}
+		public void InsertAtFirst(int val)
+		{	
+			Node newNode =new Node();
+			newNode.data = val;
+			newNode.next = head;
+		 
+		 	head = newNode;
+			
+		}
+		public void InsertAfterPosition(int val,int pos)
+		{	
+			Node newNode =new Node();
+			newNode.data = val;
+		 
+		 	Node temp = head;
+			
+			int i=0;
+			
+			while(temp != null && i < pos-1)
+			{
+					temp = temp.next;
+					i++;
+				
+			}
+			
+			newNode.next=temp.next;
+			
+			temp.next=	newNode;
+			
+		}
+		public void DeleteAtPosition(int pos)
+		{
+			Node temp = head; 
+			
+			if(pos > 0)
+			{
+				int i = 0;
+				while(temp != null && i < pos-1)
+				{
+					temp = temp.next;
+					i++;
+				}
+				temp.next = temp.next.next;
+			}
+			else
+			{
+				head = temp.next;
+			}
+			
+			
+		}
+		public void DeleteAtLast()
+		{
+			Node temp = head; 
+			
+			while(temp.next.next != null)
+			{
+				temp = temp.next;
+			}
+			
+			temp.next=null;
+		}
+		
+		public void DeleteAtFirst()
+		{
+			if (head != null) 
+			{
+			 	Node temp = head; 
+        	 	head = head.next; 
+			}		
+			
+		}
+		
+		public void ReadingData()
+		{
+			while(head != null)
+			{
+				Console.WriteLine(head.data);
+				head  = head.next;
+			}
+		}
+	}
+	
+	public static void Main()
+	{
+		LinkList obj = new LinkList();
+		obj.InsertAtLast(1);
+		obj.InsertAtLast(2);
+		obj.InsertAtLast(3);
+		obj.InsertAtLast(4);
+		obj.InsertAtLast(5);
+		obj.InsertAtLast(6);
+		//obj.DeleteAtLast();
+		//obj.DeleteAtFirst();
+		//obj.DeleteAtFirst();
+		//obj.DeleteAtPosition(1);
+		obj.InsertAfterPosition(7,2);
+		
+		Console.WriteLine("reading Start");
+		
+		obj.ReadingData();
+		
+		Console.WriteLine("reading End");
+	}
+}
